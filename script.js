@@ -1,4 +1,14 @@
-const images = [
+function shuffleArray(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array
+}
+
+let images = [
   "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
   "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW58ZW58MHx8MHx8&w=1000&q=80",
   "https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688?k=20&m=517188688&s=612x612&w=0&h=i38qBm2P-6V4vZVEaMy_TaTEaoCMkYhvLCysE7yJQ5Q=",
@@ -9,6 +19,9 @@ const images = [
   "https://www.gettyimages.com/gi-resources/images/500px/983794168.jpg",
 ];
 
+images = [...images, ...images];
+images = shuffleArray(images);
+
 let firstClick = null,
   secondClick = null;
 
@@ -17,20 +30,6 @@ let score = 0,
 
 const imageCollage = document.getElementById("image-collage");
 let c = 0;
-
-for (let i in images) {
-  const imageContainer = document.createElement("div");
-  imageContainer.classList.add("imageContainer");
-  imageContainer.classList.add("imageContainer" + c);
-  c++;
-
-  const image = document.createElement("img");
-  image.classList.add("image");
-  image.src = images[i];
-
-  imageContainer.appendChild(image);
-  imageCollage.appendChild(imageContainer);
-}
 
 for (let i in images) {
   const imageContainer = document.createElement("div");
