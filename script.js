@@ -16,10 +16,13 @@ let score = 0,
   moves = 0;
 
 const imageCollage = document.getElementById("image-collage");
+let c = 0;
 
 for (let i in images) {
   const imageContainer = document.createElement("div");
   imageContainer.classList.add("imageContainer");
+  imageContainer.classList.add("imageContainer" + c);
+  c++;
 
   const image = document.createElement("img");
   image.classList.add("image");
@@ -32,6 +35,8 @@ for (let i in images) {
 for (let i in images) {
   const imageContainer = document.createElement("div");
   imageContainer.classList.add("imageContainer");
+  imageContainer.classList.add("imageContainer" + c);
+  c++;
 
   const image = document.createElement("img");
   image.classList.add("image");
@@ -53,28 +58,32 @@ Array.from(imageContainer).map((imgCnt) => {
     if (firstClick === null) {
       firstClick = imgCnt;
     } else if (secondClick == null) {
-      secondClick = imgCnt;
-      if (firstClick.children[0].src !== secondClick.children[0].src) {
-        setTimeout(() => {
-          let firstClickImage = firstClick.children[0];
-          firstClickImage.style.visibility = "hidden";
+      if (
+        Array.from(imgCnt.classList)[1] !== Array.from(firstClick.classList)[1]
+      ) {
+        secondClick = imgCnt;
+        if (firstClick.children[0].src !== secondClick.children[0].src) {
+          setTimeout(() => {
+            let firstClickImage = firstClick.children[0];
+            firstClickImage.style.visibility = "hidden";
 
-          let secondClickImage = secondClick.children[0];
-          secondClickImage.style.visibility = "hidden";
+            let secondClickImage = secondClick.children[0];
+            secondClickImage.style.visibility = "hidden";
+            firstClick = null;
+            secondClick = null;
+          }, 500);
+        } else {
+          score++;
+          document.getElementById("score1").innerHTML = score;
           firstClick = null;
           secondClick = null;
-        }, 500);
-      } else {
-        score++;
-        document.getElementById("score1").innerHTML = score;
-        firstClick = null;
-        secondClick = null;
 
-        if (score >= 8) {
-          alert("Game Over");
-          setTimeout(() => {
-            location.reload();
-          }, 1000);
+          if (score >= 8) {
+            alert("Game Over");
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
+          }
         }
       }
     }
