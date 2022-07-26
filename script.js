@@ -23,7 +23,6 @@ for (let i in images) {
   imageContainer.classList.add("imageContainer");
   imageContainer.classList.add("imageContainer" + c);
   c++;
-  console.log(c);
 
   const image = document.createElement("img");
   image.classList.add("image");
@@ -38,7 +37,6 @@ for (let i in images) {
   imageContainer.classList.add("imageContainer");
   imageContainer.classList.add("imageContainer" + c);
   c++;
-  console.log(c);
 
   const image = document.createElement("img");
   image.classList.add("image");
@@ -50,7 +48,6 @@ for (let i in images) {
 
 const imageContainer = document.getElementsByClassName("imageContainer");
 Array.from(imageContainer).map((imgCnt) => {
-  console.log("🚀 ~ file: script.js ~ line 53 ~ Array.from ~ imgCnt", imgCnt)
   imgCnt.addEventListener("click", () => {
     const image = imgCnt.children[0];
     if (image.style.visibility !== "unset") {
